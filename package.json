@@ -5,7 +5,10 @@
   "main": "resources/main.js",
   "scripts": {
     "dev": "shadow-cljs watch main renderer",
-    "build": "shadow-cljs compile main renderer",
+    "electron": "npx electron .",
+    "build": "shadow-cljs compile main renderer"
+  },
+  "scripts-disabled": {
     "clean": "rm -rf resources/public/js/* && rm -rf target"
   },
   "keywords": [

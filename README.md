@@ -1,18 +1,18 @@
-# shadow-electron-starter
-ClojureScript + Shadow-cljs + Electron + Reagent
+# TNPR
 
 ## How to Run
-```
-npm install electron-prebuilt -g
-npm install shadow-cljs -g
-npm install
 
+```
+npm install
 npm run dev
-electron .
+npx electron .
 ```
 
 ## Release
+
+NB: not tested.
+
 ```
 npm run build
-electron-packager . HelloWorld --platform=darwin --arch=x64 --version=1.4.13
+npx electron-packager . TNPR --platform=darwin --arch=x64 --version=1.4.13
 ```
