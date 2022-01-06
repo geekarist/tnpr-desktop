@@ -7,10 +7,21 @@
 
 (defonce state (atom root/init))
 
-(defn root-component []
-  (root/view @state
-             (fn dispatch [message]
-               (swap! state root/updated message))))
+(defn- handle-effect!
+  [effects
+   [effect-key effect-args]
+   dispatch]
+  
+  (let [apply-effect! (effect-key effects)]
+    (apply-effect! effect-args dispatch)))
+
+(defn- root-component []
+  (root/view
+   @state
+   (fn dispatch [message]
+     (let [[new-state new-effect] (root/updated @state message)]
+       (compare-and-set! state @state new-state)
+       (handle-effect! root/effects new-effect dispatch)))))
 
 (defn ^:dev/after-load start! []
   (rd/render

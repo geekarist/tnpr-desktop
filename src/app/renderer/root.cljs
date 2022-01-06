@@ -15,8 +15,15 @@
 (defn updated [state message]
   (condp = message
     :inc-counter
-    (inc state)))
+    [(inc state)
+     [:log-effect [:log-effect-arg1 :log-effect-arg2]]]))
+
+(def effects
+  {:log-effect
+   (fn [arg _dispatch]
+     (println arg))})
 
 (comment
-  init view updated
+   ;; Work around 'unused code' warnings
+  init view updated effects
   )
