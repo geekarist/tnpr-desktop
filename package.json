@@ -1,7 +1,7 @@
 {
-  "name": "shadow-electron-starter",
+  "name": "tnpr",
   "version": "1.0.0",
-  "description": "shadow-cljs electron starter",
+  "description": "Public transit application for the desktop",
   "main": "resources/main.js",
   "scripts": {
     "dev": "shadow-cljs watch main renderer",
@@ -16,7 +16,7 @@
     "reagent",
     "electron"
   ],
-  "author": "Ahonn Jiang <ahonn95@outlook.com>",
+  "author": "Christophe Pelé",
   "license": "MIT",
   "devDependencies": {
     "electron": "^8.2.5",
