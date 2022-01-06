@@ -14,4 +14,4 @@
           :renderer {:target :browser
                      :output-dir "resources/public/js"
                      :asset-path "js"
-                     :modules {:renderer {:init-fn app.renderer.tnpr/start!}}}}}
+                     :modules {:renderer {:init-fn app.renderer.runtime/start!}}}}}
