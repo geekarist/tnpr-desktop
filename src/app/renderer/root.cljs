@@ -9,21 +9,21 @@
     [:img.cljs {:src "img/cljs-logo.svg"}]
     [:img.reagent {:src "img/reagent-logo.png"}]]
    [:button
-    {:on-click #(dispatch :inc-counter)}
+    {:on-click #(dispatch :msg/inc-counter)}
     (str "Clicked " state " times")]])
 
 (defn updated [state message]
   (condp = message
-    :inc-counter
+    :msg/inc-counter
     [(inc state)
-     [:log-effect [:log-effect-arg1 :log-effect-arg2]]]))
+     [:effect/log [:effect/log-arg1 :effect/log-arg2]]]))
 
 (def effects
-  {:log-effect
+  {:effect/log
    (fn [arg _dispatch]
      (println arg))})
 
 (comment
-   ;; Work around 'unused code' warnings
+   ;; Work around 'unused var' warnings
   init view updated effects
   )
