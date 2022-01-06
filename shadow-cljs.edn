@@ -9,9 +9,9 @@
  :builds {;; Main script to use electron APIs
           :main {:target :node-script
                  :output-to "resources/main.js"
-                 :main app.main.core/main}
+                 :main app.main.tnpr/main}
           ;; Renderer script to use browser APIs
           :renderer {:target :browser
                      :output-dir "resources/public/js"
                      :asset-path "js"
-                     :modules {:renderer {:init-fn app.renderer.core/start!}}}}}
+                     :modules {:renderer {:init-fn app.renderer.tnpr/start!}}}}}

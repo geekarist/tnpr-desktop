@@ -1,4 +1,4 @@
-(ns app.renderer.core
+(ns app.renderer.tnpr
   (:require [reagent.core :refer [atom]]
             [reagent.dom :as rd]))
 

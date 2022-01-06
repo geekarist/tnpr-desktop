@@ -1,4 +1,4 @@
-(ns app.main.core
+(ns app.main.tnpr
   (:require ["electron" :refer [app BrowserWindow crashReporter]]))
 
 (def main-window (atom nil))
@@ -33,4 +33,5 @@
 
 (comment
   main ;; Work around 'unused var' warning
+  (println "Yo")
   )
