@@ -3,12 +3,14 @@
 
  :dependencies [[reagent "0.10.0"]]
 
+ ;; Used by the server started by `shadow-cljs watch`
  :dev-http {8080 "resources/public/"}
 
- :builds {:main {:target :node-script
+ :builds {;; Main script to use electron APIs
+          :main {:target :node-script
                  :output-to "resources/main.js"
                  :main app.main.core/main}
-
+          ;; Renderer script to use browser APIs
           :renderer {:target :browser
                      :output-dir "resources/public/js"
                      :asset-path "js"

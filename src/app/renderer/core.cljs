@@ -20,3 +20,7 @@
   (rd/render
    [root-component]
    (js/document.getElementById "app-container")))
+
+(comment
+  start! ;; Work around 'unused var' warning
+  )
