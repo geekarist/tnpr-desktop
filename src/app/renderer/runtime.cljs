@@ -19,7 +19,7 @@
   (root/view
    @state
    (fn dispatch [message]
-     (let [[new-state new-effect] (root/updated @state message)]
+     (let [[new-state new-effect] (root/update @state message)]
        (compare-and-set! state @state new-state)
        (handle-effect! root/effects new-effect dispatch)))))
 

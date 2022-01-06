@@ -1,4 +1,5 @@
-(ns app.renderer.root)
+(ns app.renderer.root
+  (:refer-clojure :exclude [update]))
 
 (def init 0)
 
@@ -12,7 +13,7 @@
     {:on-click #(dispatch :msg/inc-counter)}
     (str "Clicked " state " times")]])
 
-(defn updated [state message]
+(defn update [state message]
   (condp = message
     :msg/inc-counter
     [(inc state)
@@ -25,5 +26,5 @@
 
 (comment
    ;; Work around 'unused var' warnings
-  init view updated effects
+  init view update effects
   )
