@@ -1,5 +1,6 @@
 (ns app.renderer.root
-  (:refer-clojure :exclude [update]))
+  (:refer-clojure :exclude [update])
+  (:require [app.renderer.orig-dest :as od]))
 
 (def init 0)
 
@@ -11,7 +12,9 @@
     [:img.reagent {:src "img/reagent-logo.png"}]]
    [:button
     {:on-click #(dispatch :msg/inc-counter)}
-    (str "Clicked " state " times")]])
+    (str "Clicked " state " times")]
+   
+   (od/view)])
 
 (defn update [state message]
   (condp = message

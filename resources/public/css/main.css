@@ -2,3 +2,17 @@
   width: 100px;
   margin-left: 5px;
 }
+
+.od {
+  margin-top: 16px;
+}
+
+.od-orig {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.od-dest {
+  display: block;
+  margin-bottom: 8px;
+}
