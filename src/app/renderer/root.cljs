@@ -2,7 +2,8 @@
   (:refer-clojure :exclude [update])
   (:require [app.renderer.orig-dest :as od]))
 
-(def init {::state.count 0})
+(def init {::state.count 0
+           ::state.od od/init})
 
 (defn view [state dispatch]
   [:div
@@ -14,7 +15,7 @@
     {:on-click #(dispatch ::msg.inc-counter)}
     (str "Clicked " (state ::state.count) " times")]
    
-   (od/view)])
+   (od/view (state ::state.od))])
 
 (defn update [state message]
   (condp = message
