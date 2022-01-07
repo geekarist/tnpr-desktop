@@ -17,14 +17,22 @@
 
    (od/view (state ::state.od)
             (fn [od-msg]
-              (dispatch [::msg.od [od-msg]])))])
+              (dispatch [::msg.od od-msg])))])
 
-(defn update [state [msg-key _msg-arg :as message]]
+(defn update [state [msg-key msg-arg :as message]]
   (condp = msg-key
     
     ::msg.inc-counter
     [(assoc state ::state.count (inc (state ::state.count)))
      nil]
+    
+    ::msg.od
+    (let [od-old-state (state ::state.od)
+          od-update-result (od/update od-old-state msg-arg)
+          [od-new-state od-new-effect] od-update-result
+          new-state (assoc state ::state.od od-new-state)
+          new-effect od-new-effect]
+      [new-state new-effect])
 
     [state [:effect/log (str "Unknown effect in root: "  message)]]))
 

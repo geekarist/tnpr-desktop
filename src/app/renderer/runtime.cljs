@@ -24,7 +24,8 @@
   (root/view
    @state
    (fn dispatch [message]
-     (let [[new-state new-effect] (root/update @state message)]
+     (let [update-result (root/update @state message)
+           [new-state new-effect] update-result]
        (compare-and-set! state @state new-state)
        (if new-effect
          (handle-effect! effects new-effect dispatch)

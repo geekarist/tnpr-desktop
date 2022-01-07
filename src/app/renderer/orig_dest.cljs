@@ -1,4 +1,5 @@
-(ns app.renderer.orig-dest)
+(ns app.renderer.orig-dest
+  (:refer-clojure :exclude [update]))
 
 (def init {::state.orig "Montigny"
            ::state.dest "Paris"})
@@ -19,4 +20,17 @@
        (dispatch [::msg.change-dest (-> event .-target .-value)]))}]
    [:button.od-search "Search"]])
 
-(comment init view)
+(defn update [state [msg-key msg-arg :as msg]]
+  (condp = msg-key
+    
+    ::msg.change-orig
+    [(assoc state ::state.orig msg-arg)
+     nil]
+    
+    ::msg.change-dest
+    [(assoc state ::state.dest msg-arg)
+     nil]
+    
+    [state [:effect/log (str "Unknown message in orig_dest: " msg)]]))
+
+(comment init view update)
