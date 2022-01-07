@@ -19,12 +19,7 @@
     [(inc state)
      [:effect/log [:effect/log-arg1 :effect/log-arg2]]]))
 
-(def effects
-  {:effect/log
-   (fn [arg _dispatch]
-     (println arg))})
-
 (comment
    ;; Work around 'unused var' warnings
-  init view update effects
+  init view update
   )

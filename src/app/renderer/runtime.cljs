@@ -7,6 +7,11 @@
 
 (defonce state (atom root/init))
 
+(def effects
+  {:effect/log
+   (fn log! [arg _dispatch]
+     (println arg))})
+
 (defn- handle-effect!
   [effects
    [effect-key effect-args]
@@ -21,7 +26,7 @@
    (fn dispatch [message]
      (let [[new-state new-effect] (root/update @state message)]
        (compare-and-set! state @state new-state)
-       (handle-effect! root/effects new-effect dispatch)))))
+       (handle-effect! effects new-effect dispatch)))))
 
 (defn ^:dev/after-load start! []
   (rd/render
