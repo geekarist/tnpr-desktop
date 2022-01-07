@@ -11,14 +11,14 @@
     [:img.cljs {:src "img/cljs-logo.svg"}]
     [:img.reagent {:src "img/reagent-logo.png"}]]
    [:button
-    {:on-click #(dispatch :msg/inc-counter)}
+    {:on-click #(dispatch ::msg.inc-counter)}
     (str "Clicked " (state ::state.count) " times")]
    
    (od/view)])
 
 (defn update [state message]
   (condp = message
-    :msg/inc-counter
+    ::msg.inc-counter
     [(assoc state ::state.count (inc (state ::state.count)))
      [:effect/log [:effect/log-arg1 :effect/log-arg2]]]))
 
