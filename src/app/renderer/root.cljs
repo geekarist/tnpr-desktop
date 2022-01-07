@@ -2,7 +2,7 @@
   (:refer-clojure :exclude [update])
   (:require [app.renderer.orig-dest :as od]))
 
-(def init 0)
+(def init {::state.count 0})
 
 (defn view [state dispatch]
   [:div
@@ -12,14 +12,14 @@
     [:img.reagent {:src "img/reagent-logo.png"}]]
    [:button
     {:on-click #(dispatch :msg/inc-counter)}
-    (str "Clicked " state " times")]
+    (str "Clicked " (state ::state.count) " times")]
    
    (od/view)])
 
 (defn update [state message]
   (condp = message
     :msg/inc-counter
-    [(inc state)
+    [(assoc state ::state.count (inc (state ::state.count)))
      [:effect/log [:effect/log-arg1 :effect/log-arg2]]]))
 
 (comment
