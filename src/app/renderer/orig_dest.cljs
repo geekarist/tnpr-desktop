@@ -18,7 +18,7 @@
      :on-change
      (fn [event]
        (dispatch [::msg.change-dest (-> event .-target .-value)]))}]
-   [:button.od-search "Search"]])
+   [:button.od-search {:on-click #(dispatch [::msg.submit])} "Search" ]])
 
 (defn update [state [msg-key msg-arg :as msg]]
   (condp = msg-key
@@ -30,6 +30,13 @@
     ::msg.change-dest
     [(assoc state ::state.dest msg-arg)
      nil]
+    
+    ::msg.submit
+    [state
+     [:effect/log (str "Sumbitted: orig = \""
+                       (state ::state.orig)
+                       "\", dest = \""
+                       (state ::state.dest) "\"")]]
     
     [state [:effect/log (str "Unknown message in orig_dest: " msg)]]))
 
