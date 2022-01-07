@@ -26,7 +26,9 @@
    (fn dispatch [message]
      (let [[new-state new-effect] (root/update @state message)]
        (compare-and-set! state @state new-state)
-       (handle-effect! effects new-effect dispatch)))))
+       (if new-effect
+         (handle-effect! effects new-effect dispatch)
+         nil)))))
 
 (defn ^:dev/after-load start! []
   (rd/render

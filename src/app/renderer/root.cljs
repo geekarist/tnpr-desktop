@@ -12,20 +12,21 @@
     [:img.cljs {:src "img/cljs-logo.svg"}]
     [:img.reagent {:src "img/reagent-logo.png"}]]
    [:button
-    {:on-click #(dispatch ::msg.inc-counter)}
+    {:on-click #(dispatch [::msg.inc-counter])}
     (str "Clicked " (state ::state.count) " times")]
 
    (od/view (state ::state.od)
             (fn [od-msg]
               (dispatch [::msg.od [od-msg]])))])
 
-(defn update [state message]
-  (condp = message
+(defn update [state [msg-key _msg-arg :as message]]
+  (condp = msg-key
+    
     ::msg.inc-counter
     [(assoc state ::state.count (inc (state ::state.count)))
-     [:effect/log [:effect/log-arg1 :effect/log-arg2]]]
+     nil]
 
-    [state [:effect/log message]]))
+    [state [:effect/log (str "Unknown effect in root: "  message)]]))
 
 (comment
    ;; Work around 'unused var' warnings
