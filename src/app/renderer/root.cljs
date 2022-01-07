@@ -14,16 +14,19 @@
    [:button
     {:on-click #(dispatch ::msg.inc-counter)}
     (str "Clicked " (state ::state.count) " times")]
-   
-   (od/view (state ::state.od))])
+
+   (od/view (state ::state.od)
+            (fn [od-msg]
+              (dispatch [::msg.od [od-msg]])))])
 
 (defn update [state message]
   (condp = message
     ::msg.inc-counter
     [(assoc state ::state.count (inc (state ::state.count)))
-     [:effect/log [:effect/log-arg1 :effect/log-arg2]]]))
+     [:effect/log [:effect/log-arg1 :effect/log-arg2]]]
+
+    [state [:effect/log message]]))
 
 (comment
    ;; Work around 'unused var' warnings
-  init view update
-  )
+  init view update)
