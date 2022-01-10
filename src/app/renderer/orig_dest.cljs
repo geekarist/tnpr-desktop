@@ -1,5 +1,6 @@
 (ns app.renderer.orig-dest
-  (:refer-clojure :exclude [update]))
+  (:refer-clojure :exclude [update])
+  (:require [app.renderer.effects :as fx]))
 
 (def init {::state.orig "Montigny"
            ::state.dest "Paris"})
@@ -33,11 +34,11 @@
     
     ::msg.submit
     [state
-     [:effect/log (str "Sumbitted: orig = \""
+     [::fx/log (str "Sumbitted: orig = \""
                        (state ::state.orig)
                        "\", dest = \""
                        (state ::state.dest) "\"")]]
     
-    [state [:effect/log (str "Unknown message in orig_dest: " msg)]]))
+    [state [::fx/log (str "Unknown message in orig_dest: " msg)]]))
 
 (comment init view update)
