@@ -20,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^8.2.5",
+    "json-server": "^0.17.0",
     "shadow-cljs": "^2.8.110"
   },
   "dependencies": {

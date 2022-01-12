@@ -4,6 +4,7 @@ node_modules/
 
 resources/public/js
 resources/main.js
+resources/mock.js
 target/
 
 .clj-kondo

@@ -14,4 +14,8 @@
           :renderer {:target :browser
                      :output-dir "resources/public/js"
                      :asset-path "js"
-                     :modules {:renderer {:init-fn app.renderer.runtime/start!}}}}}
+                     :modules {:renderer {:init-fn app.renderer.runtime/start!}}}
+          ;; Mock
+          :mock {:target :node-script
+                 :output-to "resources/mock.js"
+                 :main mock/start!}}}
