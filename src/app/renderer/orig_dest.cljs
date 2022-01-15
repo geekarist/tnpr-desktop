@@ -1,6 +1,7 @@
 (ns app.renderer.orig-dest
   (:refer-clojure :exclude [update])
-  (:require [app.renderer.effects :as fx]))
+  (:require [app.renderer.effects :as fx]
+            [ajax.core :refer [json-request-format json-response-format]]))
 
 (def init {::state.orig "Montigny"
            ::state.dest "Paris"})
@@ -34,10 +35,13 @@
     
     ::msg.submit
     [state
-     [::fx/log (str "Sumbitted: orig = \""
-                       (state ::state.orig)
-                       "\", dest = \""
-                       (state ::state.dest) "\"")]]
+     [::fx/http-request
+      {:uri (str "http://localhost:3000/journeys"
+                 "?request.from=2.3749036;48.8467927"
+                 "&request.to=2.2922926;48.8583736")
+       :method :get
+       :format (json-request-format)
+       :response-format (json-response-format)}]]
     
     [state [::fx/log (str "Unknown message in orig_dest: " msg)]]))
 
