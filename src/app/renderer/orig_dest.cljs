@@ -36,12 +36,13 @@
     ::msg.submit
     [state
      [::fx/http-request
-      {:uri (str "http://localhost:3000/journeys"
-                 "?request.from=2.3749036;48.8467927"
-                 "&request.to=2.2922926;48.8583736")
-       :method :get
-       :format (json-request-format)
-       :response-format (json-response-format)}]]
+      [{:uri (str "http://localhost:3000/journeys"
+                  "?request.from=2.3749036;48.8467927"
+                  "&request.to=2.2922926;48.8583736")
+        :method :get
+        :format (json-request-format)
+        :response-format (json-response-format)}
+      ::msg.http-resp-received]]]
     
     [state [::fx/log (str "Unknown message in orig_dest: " msg)]]))
 

@@ -1,6 +1,7 @@
 (ns app.renderer.root
   (:refer-clojure :exclude [update])
-  (:require [app.renderer.orig-dest :as od]))
+  (:require [app.renderer.orig-dest :as od]
+            [app.renderer.effects :as fx]))
 
 (def init {::state.count 0
            ::state.od od/init})
@@ -34,7 +35,7 @@
           new-effect od-new-effect]
       [new-state new-effect])
 
-    [state [:effect/log (str "Unknown effect in root: "  message)]]))
+    [state [::fx/log (str "Unknown effect in root: "  message)]]))
 
 (comment
    ;; Work around 'unused var' warnings
