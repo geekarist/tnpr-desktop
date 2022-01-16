@@ -35,7 +35,7 @@
           new-effect od-new-effect]
       [new-state new-effect])
 
-    [state [::fx/log (str "Unknown effect in root: "  message)]]))
+    [state [::fx/log (str "Unknown message in root: "  message)]]))
 
 (comment
    ;; Work around 'unused var' warnings
