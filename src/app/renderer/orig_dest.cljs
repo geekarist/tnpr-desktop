@@ -6,21 +6,21 @@
 (def init {::state.orig "Montigny"
            ::state.dest "Paris"})
 
-(defn view [state dispatch]
+(defn view [state dispatch-to-od]
   [:div.od
    [:input.od-orig
     {:type "text"
      :default-value (state ::state.orig)
      :on-change
      (fn [event]
-       (dispatch [::msg.change-orig (-> event .-target .-value)]))}]
+       (dispatch-to-od [::msg.change-orig (-> event .-target .-value)]))}]
    [:input.od-dest
     {:type "text"
      :default-value (state ::state.dest)
      :on-change
      (fn [event]
-       (dispatch [::msg.change-dest (-> event .-target .-value)]))}]
-   [:button.od-search {:on-click #(dispatch [::msg.submit])} "Search" ]])
+       (dispatch-to-od [::msg.change-dest (-> event .-target .-value)]))}]
+   [:button.od-search {:on-click #(dispatch-to-od [::msg.submit])} "Search" ]])
 
 (defn update [state [msg-key msg-arg :as msg]]
   (condp = msg-key

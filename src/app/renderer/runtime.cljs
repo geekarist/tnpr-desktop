@@ -11,12 +11,12 @@
 (defn- root-component []
   (root/view
    @state
-   (fn dispatch [message]
+   (fn dispatch-to-root [message]
      (let [update-result (root/update @state message)
            [new-state new-effect] update-result]
        (compare-and-set! state @state new-state)
        (if new-effect
-         (effects/handle! new-effect dispatch)
+         (effects/handle! new-effect dispatch-to-root)
          nil)))))
 
 (defn ^:dev/after-load start! []

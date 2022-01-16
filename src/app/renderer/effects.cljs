@@ -4,22 +4,22 @@
 (defn- log! [arg _dispatch]
   (println arg))
 
-(defn- http-request! [[req msg-key :as _effect-args] dispatch]
-  (println "Request:" req)
+(defn- http-request!
+  [[req msg-key :as _effect-args] dispatch-to-root]
   (ajax-request
    (assoc req
           :handler
           (fn [_ok? result]
-            (dispatch [msg-key result])))))
+            (dispatch-to-root [msg-key result])))))
 
 (def effects {::log log!
               ::http-request http-request!})
 
 (defn handle!
   [[effect-key effect-args]
-   dispatch]
+   dispatch-to-root]
   (let [apply-effect! (effect-key effects)]
     (if (some? apply-effect!)
-      (apply-effect! effect-args dispatch)
+      (apply-effect! effect-args dispatch-to-root)
       (println "Unknown effect:" effect-key))))
 

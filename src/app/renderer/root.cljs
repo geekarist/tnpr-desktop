@@ -6,19 +6,19 @@
 (def init {::state.count 0
            ::state.od od/init})
 
-(defn view [state dispatch]
+(defn view [state dispatch-to-root]
   [:div
    [:div.logos
     [:img.electron {:src "img/electron-logo.png"}]
     [:img.cljs {:src "img/cljs-logo.svg"}]
     [:img.reagent {:src "img/reagent-logo.png"}]]
    [:button
-    {:on-click #(dispatch [::msg.inc-counter])}
+    {:on-click #(dispatch-to-root [::msg.inc-counter])}
     (str "Clicked " (state ::state.count) " times")]
 
    (od/view (state ::state.od)
-            (fn [od-msg]
-              (dispatch [::msg.od od-msg])))])
+            (fn dispatch-to-od [od-msg]
+              (dispatch-to-root [::msg.od od-msg])))])
 
 (defn update [state [msg-key msg-arg :as message]]
   (condp = msg-key
